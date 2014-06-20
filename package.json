@@ -1,0 +1,16 @@
+{
+  "name": "drive-api-proxy",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.coffee",
+  "scripts": {
+    "start": "coffee app.coffee"
+  },
+  "author": "",
+  "license": "BSD v3",
+  "dependencies": {
+    "express": "^4.4.3",
+    "request": "^2.36.0",
+    "body-parser": "^1.4.3"
+  }
+}
