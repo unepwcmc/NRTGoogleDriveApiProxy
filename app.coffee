@@ -40,7 +40,7 @@ app.get('/request_refresh_token', (req, res) ->
 EXPECTED_REFERRER = /https:\/\/accounts.google.com\/.*/
 
 app.get('/store_refresh_token', (req, res) ->
-  if EXPECTED_REFERRER.match req.headers['referer']
+  if EXPECTED_REFERRER.exec req.headers['referer']
     console.log req.params
   else
     res.send(401, "Request must be a redirect from google")
