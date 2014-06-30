@@ -58,7 +58,8 @@ app.get('/request_token_callback', (req, res) ->
     code = req.query.code
 
     request.post({
-      body:
+      uri: "http://accounts.google.com/o/oauth2/token"
+      form:
         code: code
         client_id: CLIENT_ID
         client_secret: CLIENT_SECRET
