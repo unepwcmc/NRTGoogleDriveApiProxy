@@ -57,7 +57,7 @@ app.get('/request_token_callback', (req, res) ->
   if isFromGoogle(req)
     code = req.query.code
 
-    req.post({
+    request.post({
       body:
         code: code
         client_id: CLIENT_ID
