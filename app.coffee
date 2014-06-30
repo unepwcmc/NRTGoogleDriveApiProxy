@@ -58,19 +58,21 @@ app.get('/request_token_callback', (req, res) ->
     code = req.query.code
 
     request.post({
-      uri: "http://accounts.google.com/o/oauth2/token"
+      uri: "https://accounts.google.com/o/oauth2/token"
       form:
         code: code
         client_id: CLIENT_ID
         client_secret: CLIENT_SECRET
         redirect_uri: "#{DOMAIN}/store_refresh_token"
         grant_type: "authorization_code"
-    }, (err) ->
+    }, (err, response, body) ->
       if err?
         console.log "Error requesting refresh token"
         console.log err
         res.send(500, "Error requesting refresh token")
       else
+        console.log "Requested refresh token, got response: #{response.statusCode}"
+        console.log body
         res.send(200, "Send request for refresh token, should be written to FS soon")
 
     )
@@ -79,6 +81,8 @@ app.get('/request_token_callback', (req, res) ->
 )
 
 app.get('/store_refresh_token', ->
+  console.log "Gonna store the refresh token"
+
   if isFromGoogle(req)
     refreshToken = req.query.refresh_token
     console.log "Got refresh token: #{refreshToken}"
