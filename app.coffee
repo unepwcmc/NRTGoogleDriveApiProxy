@@ -26,7 +26,7 @@ app.get('/request_refresh_token', (req, res) ->
   googleAuthUrl = "https://accounts.google.com/o/oauth2/auth?
      scope=email%20profile&
      state=%2Fprofile&
-     redirect_uri=https://www.googleapis.com/auth/drive&
+     redirect_uri=#{DOMAIN}/store_refresh_token
      response_type=code&
      client_id=996507169218-amsh4j7r138o7pdrurojv2ppmp991p3k.apps.googleusercontent.com&
      access_type=offline"
