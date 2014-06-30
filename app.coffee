@@ -24,7 +24,7 @@ app.post('/indicators/change_event', (req, res) ->
 
 app.get('/request_refresh_token', (req, res) ->
   googleAuthUrl = "https://accounts.google.com/o/oauth2/auth?
-     scope=email%20profile&
+     scope=https://www.googleapis.com/auth/drive&
      state=%2Fprofile&
      redirect_uri=#{DOMAIN}/store_refresh_token&
      response_type=code&
