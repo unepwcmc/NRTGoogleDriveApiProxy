@@ -8,9 +8,13 @@ app.use(bodyParser.json())
 
 CLIENT_SECRET_FILE = "./client_secret_token"
 
+stripWhitespace = (string) ->
+  string.replace(/[\s|\n]/g, '')
+
 readClientSecret = ->
   if fs.existsSync(CLIENT_SECRET_FILE)
-    return fs.readFileSync(CLIENT_SECRET_FILE, "UTF8")
+    secret = fs.readFileSync(CLIENT_SECRET_FILE, "UTF8")
+    return stripWhitespace(secret)
   else
     throw new Error("Please put the client-secret from the google developer console in a file named #{CLIENT_SECRET_FILE}")
 
@@ -47,7 +51,7 @@ app.get('/request_refresh_token', (req, res) ->
      client_id=#{CLIENT_ID}&
      access_type=offline"
 
-  googleAuthUrl = googleAuthUrl.replace(/[\s|\n]/g, '')
+  googleAuthUrl = stripWhitespace(googleAuthUrl)
   console.log "Redirecting to #{googleAuthUrl}"
 
   res.redirect(googleAuthUrl)
